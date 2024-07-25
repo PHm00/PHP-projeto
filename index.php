@@ -13,13 +13,13 @@
             include 'funcoes.php';//Conectando com o arquivo de funções
         ?>
         <label> Primeiro Número :</label>
-        <input type="number" id="num1" name="num1"/><br><br>
+        <input type="text" id="num1" name="num1"/><br><br>
  
         <label> Segundo Número :</label>
-        <input type="number" id="num2" name="num2"/><br><br>
+        <input type="text" id="num2" name="num2"/><br><br>
 
         <label> Terceiro Número :</label>
-        <input type="number" id="num3" name="num3"/><br><br>
+        <input type="text" id="num3" name="num3"/><br><br>
  
         <button type="submit"name="action" value="calcular">Calcular</button><br><br>
         <button type="submit"name="action" value="verificarNum1">verificar se o num 1 é par ou Ímpar</button><br><br>
@@ -28,13 +28,21 @@
         <button type="submit"name="action" value="dobro">Dobro do número digitado</button><br><br>
         <button type="submit"name="action" value="celsius">Converter Celsius para fahrenheit</button><br><br>
         <button type="submit"name="action" value="verificar">Verificar se o Número é positivo negativo ou zero</button><br><br>
+        <button type="submit"name="action" value="maiores">Mostrar o maior número dentre os 3 digitados</button><br><br>
+        <button type="submit"name="action" value="tabuada1">faz a tabuada do 1 até 10 do número digitado</button><br><br>
+        <button type="submit"name="action" value="somaNum">faz a soma de 1 até o número digitado</button><br><br>
+        <button type="submit"name="action" value="primo">verifica se o número digitado é primo ou não</button><br><br>
+        <button type="submit"name="action" value="palindromos">verifica se a palavra é um palindromo</button><br><br>
+        <button type="submit"name="action" value="fatorial">calcula o fatorial do número digitado</button><br><br>
+        <button type="submit"name="action" value="pares1">mostra os números pares até o número digitado</button><br><br>
         </button><br><br>
  
         <textarea rows="100" cols="40" readOnly>
             <?php
                 if ($_POST){
-                    $num1 = (int)$_POST['num1'];
-                    $num2 = (int)$_POST['num2'];
+                    $num1 = $_POST['num1'] ?? '';
+                    $num2 = $_POST['num2'] ?? '';
+                    $num3 = $_POST['num3'] ?? '';
 
                     switch ($_POST['action']) {
                         case 'calcular':
@@ -69,6 +77,27 @@
                             break;
                         case 'verificar':
                             echo verificarNum($num1);
+                            break;  
+                        case 'maiores':
+                            echo "O maior Número digitado entre os Três $num1, $num2, $num3, é  ".maiorTresNum($num1,$num2,$num3);
+                            break;
+                        case 'tabuada1':
+                            echo tabuada($num1,$num2);
+                            break;
+                        case 'somaNum':
+                            echo somaAte($num1);
+                            break;
+                        case 'primo':
+                            echo verificarPrimo($num1);
+                            break;
+                        case 'palindromos':
+                            echo palindromo($num1);
+                            break;
+                        case 'fatorial':
+                            echo calcularFatorial($num1);
+                            break;
+                        case 'pares1':
+                            echo paresAte($num1);
                             break;
                     
                     }
